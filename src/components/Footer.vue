@@ -1,36 +1,18 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox" v-model="isCheckAll"/>
+      <slot name="check"></slot>
     </label>
     <span>
       <!--数据来源  data  props 计算属性-->
-          <span>已完成{{completeSize}}</span> / 全部{{todos.length}}
+          <slot name="size"></slot>
         </span>
-    <button class="btn btn-danger" v-show="completeSize" @click="deleteCompleteTodos">清除已完成任务</button>
+    <slot name="delete"></slot>
   </div>
 </template>
 <script>
   export default{
-    props:{
-      todos:Array,
-      deleteCompleteTodos:Function,
-      selectAllTodos:Function
-    },
-    computed:{
-      completeSize(){
-        return this.todos.reduce((pre,todo)=> pre + (todo.complete? 1:0),0 )
-      },
-      isCheckAll:{
-        get(){
-          //计算属性不能调用 （自动调用）
-          return this.todos.length === this.completeSize && this.completeSize >0
-        },
-        set(value){
-           this.selectAllTodos(value)
-        }
-      }
-    }
+
   }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

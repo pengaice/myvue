@@ -6,10 +6,16 @@
 
 <script>
    export default{
-        data(){
-         return{
-           title:''
-         }
+     props: {
+       addTodo: {
+         type: Function,
+         required: true
+       }
+     },
+     data(){
+       return{
+         title:''
+       }
      },
      methods:{
        add(){
@@ -23,7 +29,7 @@
            complete:false
          }
 //         调用addTodo（）添Todo
-         this.$emit('addTodo',todo)
+         this.addTodo(todo)
 //         清除输入(双向数据绑定)
          this.title = ''
        }
