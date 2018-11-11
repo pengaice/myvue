@@ -5,7 +5,7 @@
       <input type="checkbox" v-model="todo.complete"/>
       <span>{{todo.title}}</span>
     </label>
-    <button class="btn btn-danger" v-show="isShow">删除</button>
+    <button class="btn btn-danger" v-show="isShow"  @click="deleteItem">删除</button>
   </li>
 </template>
 <script>
@@ -36,8 +36,10 @@
 //        this.bgColor = isEnter ? '#ccc' : '#fff'
       },
       deleteItem(){
-        const {todo,deleteTodo}=this
-        if(conform)
+        const {todo,deleteTodo,index}=this
+        if(conform(`确定删除${todo.title}吗？`)){
+          deleteTodo(index)
+        }
       }
     }
   }

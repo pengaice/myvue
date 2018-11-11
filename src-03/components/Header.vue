@@ -25,7 +25,8 @@
            return alert('请输入')
          }
          const todo = {
-           title,complete:false
+           title,
+           complete:false
          }
 //         调用addTodo（）添Todo
          this.addTodo(todo)

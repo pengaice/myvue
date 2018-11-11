@@ -1,30 +1,16 @@
 <template>
-  <h2 v-show="firstView">请输入关键字进行搜索</h2>
-  <h2 v-show="loading">请求中。。。</h2>
-  <h2 v-show="errorMsg">{{errorMsg}}</h2>
-  <div class="row">
-    <div class="card">
-      <a href="https://github.com/reactjs" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style='width: 100px'/>
-      </a>
-      <p class="card-text">reactjs</p>
-    </div>
-  </div>
+  <ul class="todo-main">
+    <Item v-for="(todo,index) in todos" :key="index" :todo="todo" :deleteTodo="deleteTodo" :index="index"/>
+
+  </ul>
 </template>
 <script>
-  import PubSub from 'pubsub-js'
+  import Item from './Item.vue'
   export default{
-       return{
-         firstView:true,
-         loading:true,
-       }
-  }
-  mounted(){
-    PubSub.subscribe('search',(msg,searchName)=>{
-        this.firstView=true
-        this.loading=true
-
-    })
+    props:['todos','deleteTodo'],
+    components:{
+      Item
+    }
   }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

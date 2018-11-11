@@ -1,13 +1,7 @@
 <template>
-  <div class="todo-container">
-    <div class="todo-wrap">
-      <TodoHeader :addTodo= "addTodo"/>
-      <!--组件对象的属性通过标签属性传过去-->
-      <TodoMain :todos="todos" :deleteTodo = "deleteTodo"/>
-      <TodoFooter :todos="todos"
-                    :deleteCompleteTodos="deleteCompleteTodos"
-                     />
-    </div>
+  <div class="container">
+    <Search/>
+
   </div>
 </template>
 

@@ -1,7 +1,14 @@
 <template>
-  <div class="container">
-    <Search/>
-
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <TodoHeader :addTodo= "addTodo"/>
+      <!--组件对象的属性通过标签属性传过去-->
+      <TodoMain :todos="todos" :deleteTodo = "deleteTodo"/>
+      <TodoFooter :todos="todos"
+                    :deleteCompleteTodos="deleteCompleteTodos"
+                    :selectAllTodos="selectAllTodos"
+                     />
+    </div>
   </div>
 </template>
 
@@ -9,15 +16,12 @@
 import Header from './components/Header.vue'
 import Main from './components/Main.vue'
 import Footer from './components/Footer.vue'
+import storageUtils from './utils/storageUtils'
 
 export default {
   data(){
     return{
-      todos:[
-        {title:'吃饭',isComplete:false},
-        {title:'睡觉',isComplete:true},
-        {title:'coding',isComplete:false},
-      ]
+      todos:storageUtils.readTodos()
     }
   },
   methods:{
@@ -33,7 +37,13 @@ export default {
     },
 //    全选或全不选
     selectAllTodos(isCheck){
-       this.todos.forEach(todo=>todo.complete)
+       this.todos.forEach(todo=>todo.complete = isCheck)
+    }
+  },
+  watch:{
+    todos:{
+      deep:true,
+      handler:storageUtils.saveTodos()
     }
   },
   components:{

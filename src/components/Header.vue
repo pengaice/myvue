@@ -6,16 +6,16 @@
 
 <script>
    export default{
-       props:{
-         addTodo:{
-           type:Function,
-           required:true
-         }
-       },
+     props: {
+       addTodo: {
+         type: Function,
+         required: true
+       }
+     },
      data(){
-         return{
-           title:''
-         }
+       return{
+         title:''
+       }
      },
      methods:{
        add(){
@@ -25,7 +25,8 @@
            return alert('请输入')
          }
          const todo = {
-           title,complete:false
+           title,
+           complete:false
          }
 //         调用addTodo（）添Todo
          this.addTodo(todo)
