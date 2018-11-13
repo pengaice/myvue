@@ -16,43 +16,11 @@
 
 <script>
   import PubSub from 'pubsub-js'
-  import axios from 'axios'
+  import {mapState} from 'vuex'
   export default {
-    data () {
-      return {
-        firstView: true,
-        loading: false,
-        users: [],
-        errorMsg: '',
-      }
-    },
-    mounted () {
-      // 订阅
-      PubSub.subscribe('search', async (msg, searchName) => {
-        // 更新
-        this.firstView = false
-        this.loading = true
-        this.users = []
-        this.errorMsg = ''
-        // 发ajax请求
-        const url = `https://api.github.com/search/users?q=${searchName}`
-        try {
-          const response = await axios.get(url)
-          const result = response.data
-          const users = result.items.map(item => ({
-            name: item.login,
-            url: item.html_url,
-            avatar_url: item.avatar_url
-          }))
-          // 更新状态
-          this.loading = false
-          this.users = users
-        } catch (error) {
-          // 失败
-          this.loading = false
-          this.errorMsg = '请求失败'
-        }
-      })
+
+    computed:{
+      ...mapState(['firstView','loading','users','errorMsg'])
     }
   }
 </script>

@@ -21,7 +21,12 @@ import storageUtils from './utils/storageUtils'
 export default {
   data(){
     return{
-      todos:storageUtils.readTodos()
+
+      todos:[
+        {title:'吃',complete:false},
+        {title:'睡',complete:true},
+        {title:'敲代码',complete:false},
+      ]
     }
   },
   methods:{

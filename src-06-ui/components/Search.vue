@@ -10,23 +10,26 @@
 
 <script>
   import PubSub from 'pubsub-js'
+
   export default {
     data () {
       return {
         searchName: ''
       }
     },
+
     methods: {
       search () {
         const searchName = this.searchName.trim()
         if(searchName) {
-          // 发布消息
-//          PubSub.publish('search', searchName)
-          this.$store.dispatch('search',searchName)
+          // 发布消息(搜索)
+          PubSub.publish('search', searchName)
         }
       }
     }
   }
 </script>
+
 <style>
+
 </style>

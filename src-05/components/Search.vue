@@ -21,8 +21,7 @@
         const searchName = this.searchName.trim()
         if(searchName) {
           // 发布消息
-//          PubSub.publish('search', searchName)
-          this.$store.dispatch('search',searchName)
+          PubSub.publish('search', searchName)
         }
       }
     }
